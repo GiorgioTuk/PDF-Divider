@@ -1,25 +1,34 @@
 # -*- mode: python ; coding: utf-8 -*-
+from PyInstaller.utils.hooks import collect_data_files
 
+ct_datas = collect_data_files("customtkinter")
 
 a = Analysis(
-    ['gui.py'],
-    pathex=[],
+    ['src/gui.py'],
+    pathex=['src'],
     binaries=[],
-    datas=[],
-    hiddenimports=[],
+    datas=[
+        ('assets', 'assets'),
+        *ct_datas,
+    ],
+    hiddenimports=['fitz', 'PIL'],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
-    excludes=[],
+    excludes=[
+        'matplotlib', 'numpy', 'pandas', 'scipy',
+        'PyQt5', 'wx', 'unittest', 'test', 'pydoc',
+    ],
     noarchive=False,
     optimize=2,
 )
+
 pyz = PYZ(a.pure)
 
 exe = EXE(
     pyz,
     a.scripts,
-    [('O', None, 'OPTION'), ('O', None, 'OPTION')],
+    [],
     exclude_binaries=True,
     name='PDF_Divider',
     debug=False,
@@ -27,13 +36,9 @@ exe = EXE(
     strip=False,
     upx=True,
     console=False,
-    disable_windowed_traceback=False,
-    argv_emulation=False,
-    target_arch=None,
-    codesign_identity=None,
-    entitlements_file=None,
-    icon=['assets\\pdf_icon.ico'],
+    icon='assets/pdf_icon.ico',
 )
+
 coll = COLLECT(
     exe,
     a.binaries,
