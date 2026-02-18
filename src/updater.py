@@ -4,7 +4,7 @@ import sys
 import threading
 import tkinter.messagebox as mb
 
-CURRENT_VERSION = "1.0.0"
+CURRENT_VERSION = "1.0.1"
 VERSION_URL = "https://raw.githubusercontent.com/GiorgioTuk/PDF-Divider/main/version.json"
 
 def get_remote_version_info():
