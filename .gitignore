@@ -1,7 +1,6 @@
-.venv/
-__pycache__/
-*.pyc
-build/
 dist/
-release/
-*.egg-info/
+build/
+*.zip
+*.exe
+__pycache__/
+*.spec.bak

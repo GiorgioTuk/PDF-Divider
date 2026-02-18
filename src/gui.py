@@ -5,6 +5,7 @@ import threading
 import os
 import sys
 import updater
+from datetime import datetime
 
 def resource_path(relative_path):
     if hasattr(sys, '_MEIPASS'):
@@ -53,7 +54,11 @@ class PDFDivider:
         self.progressbar.grid(row=3, column=0, columnspan=3, padx=10, pady=(8, 0), sticky="ew")
         self.progressbar.set(0)
 
-        self.credit_label = customtkinter.CTkLabel(self.frame, text="© 2025 Giorgio Tuccinardi")
+        self.credit_label = customtkinter.CTkLabel(
+            self.frame,
+            text=f"© {datetime.now().year} Giorgio Tuccinardi  •  v{updater.CURRENT_VERSION}",
+            text_color="gray"
+)
         self.credit_label.grid(row=4, column=0, columnspan=3, pady=(10, 0))
 
         self.frame.grid_columnconfigure(0, weight=1)
